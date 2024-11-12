@@ -13,7 +13,7 @@ class GeometryController extends AbstractController
 {
 
     #[Route('/circle/{radius}', name: 'circle', methods: ['GET'], requirements: ["radius" => "\d+"])]
-    public function getCircleSurfaceAreaAndCircumference(float $radius)
+    public function getCircleSurfaceAreaAndCircumference(float $radius): JsonResponse
     {
 
         $circle = new Circle($radius);
@@ -27,7 +27,7 @@ class GeometryController extends AbstractController
     }
 
     #[Route('/triangle/{a}/{b}/{c}', name: 'triangle', methods: ['GET'], requirements: ["a" => "\d+", "b" => "\d+", "c" => "\d+"])]
-    public function getTriangleSurfaceAreaAndCircumference(float $a, float $b, float $c)
+    public function getTriangleSurfaceAreaAndCircumference(float $a, float $b, float $c): JsonResponse
     {
 
         $triangle = new Triangle($a, $b, $c);
