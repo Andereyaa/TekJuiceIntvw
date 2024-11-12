@@ -2,9 +2,7 @@
 
 namespace App\Model;
 
-use App\Model\BaseModel;
-
-class Triangle implements BaseModel
+class Triangle implements IModel
 {
 
     private float $a;
