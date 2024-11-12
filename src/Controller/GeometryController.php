@@ -6,14 +6,39 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 
+use App\Model\Circle;
+use App\Model\Triangle;
+
 class GeometryController extends AbstractController
 {
-    #[Route('/geometry', name: 'app_geometry')]
-    public function index(): JsonResponse
+
+    #[Route('/circle/{radius}', name: 'circle', methods: ['GET'], requirements: ["radius" => "\d+"])]
+    public function getCircleSurfaceAreaAndCircumference(float $radius)
     {
+
+        $circle = new Circle($radius);
+
         return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/GeometryController.php',
+            "type" => "circle",
+            "radius" => $radius,
+            "surface" => $circle->calculateSurface(),
+            "circumference" => $circle->calculateDiameter(),
+        ]);
+    }
+
+    #[Route('/triangle/{a}/{b}/{c}', name: 'triangle', methods: ['GET'], requirements: ["a" => "\d+", "b" => "\d+", "c" => "\d+"])]
+    public function getTriangleSurfaceAreaAndCircumference(float $a, float $b, float $c)
+    {
+
+        $triangle = new Triangle($a, $b, $c);
+
+        return $this->json([
+            "type" => "triangle",
+            "a" => $a,
+            "b" => $b,
+            "c" => $c,
+            "surface" => $triangle->calculateSurface(),
+            "circumference" => $triangle->calculateDiameter()
         ]);
     }
 }
