@@ -17,12 +17,14 @@ class GeometryController extends AbstractController
     {
 
         $circle = new Circle($radius);
+        $surface = round($circle->calculateSurface(), 3, PHP_ROUND_HALF_DOWN);
+        $circumference = round($circle->calculateDiameter(), 3, PHP_ROUND_HALF_DOWN);
 
         return $this->json([
             "type" => "circle",
             "radius" => $radius,
-            "surface" => $circle->calculateSurface(),
-            "circumference" => $circle->calculateDiameter(),
+            "surface" => $surface,
+            "circumference" => $circumference,
         ]);
     }
 
@@ -31,14 +33,16 @@ class GeometryController extends AbstractController
     {
 
         $triangle = new Triangle($a, $b, $c);
+        $surface = round($triangle->calculateSurface(), 3, PHP_ROUND_HALF_DOWN);
+        $circumference = round($triangle->calculateDiameter(), 3, PHP_ROUND_HALF_DOWN);
 
         return $this->json([
             "type" => "triangle",
             "a" => $a,
             "b" => $b,
             "c" => $c,
-            "surface" => $triangle->calculateSurface(),
-            "circumference" => $triangle->calculateDiameter()
+            "surface" => $surface,
+            "circumference" => $circumference 
         ]);
     }
 }

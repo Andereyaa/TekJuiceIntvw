@@ -16,6 +16,12 @@ class Triangle implements IModel
         $this->c = $c;
     }
 
+    /**
+     * Calculates Triangle surface area using Heron's Formula
+     * 
+     * area = √(s(s-a)(s-b)(s-c))
+     * semiperimeter, s = (a+b+c)/2
+     */
     public function calculateSurface(): float
     {
         $semi_perimeter = $this->calculateDiameter($this->a, $this->b, $this->c) / 2;
